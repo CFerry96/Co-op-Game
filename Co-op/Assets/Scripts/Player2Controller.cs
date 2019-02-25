@@ -2,9 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
-    public GameObject player1, player2;
+public class Player2Controller : MonoBehaviour
+{ 
+    private CharacterController controller;
+    
+
+
+    private float verticalVelocity;
+    private float gravity = 14.0f;
+    private float jumpForce = 30.0f;
+
+
+
+    private void Start()
+        {
+             controller = GetComponent<CharacterController>();
+        }
+
+
+        private void Update()
+        {
+            if (controller.isGrounded)
+            {
+                verticalVelocity = -gravity * Time.deltaTime;
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    verticalVelocity = jumpForce;
+                }
+            }
+            else
+            {
+                verticalVelocity -= gravity * 4 * Time.deltaTime;
+            }
+
+            Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
+            moveVector.z = Input.GetAxis("Horizontal") * 20;
+            controller.Move(moveVector * Time.deltaTime);
+
+
+    }
+
+
+
+
+
+
+    #region basic
+    /*public GameObject player1, player2;
     public Rigidbody rb1, rb2;
     private float speed;
     public float jumpForce = 100;
@@ -59,5 +103,6 @@ public class PlayerController : MonoBehaviour
         speed = 50;
         p1Movement();
         p2Movement();
-    }
+    }*/
+    #endregion
 }
