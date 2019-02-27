@@ -36,7 +36,7 @@ public class Player2Controller : MonoBehaviour
             }
 
             Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
-            moveVector.z = Input.GetAxis("Horizontal") * 20;
+            moveVector.z = Input.GetAxis("Arrows") * 20;
             controller.Move(moveVector * Time.deltaTime);
 
 

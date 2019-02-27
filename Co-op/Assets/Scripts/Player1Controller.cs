@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJump : MonoBehaviour
+public class Player1Controller : MonoBehaviour
 {
     private CharacterController controller;
     
@@ -10,7 +10,6 @@ public class PlayerJump : MonoBehaviour
     private float verticalVelocity;
     private float gravity = 14.0f;
     private float jumpForce = 20.0f;
-    private float speed = 10.0f;
 
     
 
@@ -25,7 +24,7 @@ public class PlayerJump : MonoBehaviour
         if(controller.isGrounded)
         {
             verticalVelocity = -gravity * Time.deltaTime;
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.W))
             {
                 verticalVelocity = jumpForce;
             }
@@ -35,20 +34,11 @@ public class PlayerJump : MonoBehaviour
             verticalVelocity -= gravity * 4 * Time.deltaTime;
         }
 
-        Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
-        moveVector.z = Input.GetAxis("Horizontal") * 20.0f;
-        //moveVector.y = verticalVelocity;
+        Vector3 moveVector = Vector3.zero;
+        moveVector.z = Input.GetAxis("Keys") * 20.0f;
+        moveVector.y = verticalVelocity;
+        moveVector.x = 0;
         controller.Move(moveVector * Time.deltaTime);
 
-        /*if (Input.GetKeyDown(KeyCode.A))
-        {
-            this.transform.position += new Vector3(0, 0, -speed * Time.deltaTime);
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            this.transform.position += new Vector3(0, 0, speed * Time.deltaTime);
-        }*/
-
-    }
+    } 
 }
