@@ -17,17 +17,22 @@ public class Camera : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(transform.position, player2Pos.position);
-        betweenPlayers = (player2Pos.position - transform.position);
-        betweenPlayers.Normalize();
-        betweenPlayers *= distance / 2;
-
+        betweenPlayers = (transform.position + player2Pos.position);
+        //betweenPlayers.Normalize();
+        //betweenPlayers *= distance / 2;
+        /*
         if (this.transform.position.z >= player2Pos.transform.position.z)
         {
             cameraGameObject.transform.position = Vector3.Lerp(cameraGameObject.transform.position, -betweenPlayers, Time.deltaTime);
-        }
-        else if (this.transform.position.z <= player2Pos.transform.position.z)
-        {
+        }*/
+        //if (this.transform.position.z <= player2Pos.transform.position.z)
+        //{
             cameraGameObject.transform.position = Vector3.Lerp(cameraGameObject.transform.position, betweenPlayers, Time.deltaTime);
-        }
+        //}
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(betweenPlayers, Vector3.one);
     }
 }

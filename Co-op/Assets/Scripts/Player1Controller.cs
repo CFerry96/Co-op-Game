@@ -9,7 +9,7 @@ public class Player1Controller : MonoBehaviour
 
     private float verticalVelocity;
     private float gravity = 14.0f;
-    private float jumpForce = 20.0f;
+    private float jumpForce = 30.0f;
 
     
 
