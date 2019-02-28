@@ -11,11 +11,13 @@ public class MassChanger : MonoBehaviour
 
     public Rigidbody rb2;
     public Transform p2;
+
+	AudioSource audio;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+		audio = GetComponent<AudioSource>();
     }
     public void massChanger()
     {
@@ -25,6 +27,7 @@ public class MassChanger : MonoBehaviour
 			p1.GetComponent<Animation>().Play("ScaleDown (3-2)");
             rb2.mass += 1;
 			p2.GetComponent<Animation>().Play("ScaleUp (1-2)");
+			audio.Play();
 
         }
         else if (rb1.mass == 2 && Input.GetKeyDown("s"))
@@ -33,6 +36,7 @@ public class MassChanger : MonoBehaviour
 			p1.GetComponent<Animation>().Play("ScaleDown (2-1)");
             rb2.mass += 1;
 			p2.GetComponent<Animation>().Play("ScaleUp (2-3)");
+			audio.Play();
         }
         else if (rb1.mass == 1 && Input.GetKeyDown("s"))
         {
@@ -45,6 +49,7 @@ public class MassChanger : MonoBehaviour
 			p1.GetComponent<Animation>().Play("ScaleUp (1-2)");
             rb2.mass -= 1;
 			p2.GetComponent<Animation>().Play("ScaleDown (3-2)");
+			audio.Play();
         }
         else if(rb2.mass == 2 && Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -52,6 +57,7 @@ public class MassChanger : MonoBehaviour
 			p1.GetComponent<Animation>().Play("ScaleUp (2-3)");
             rb2.mass -= 1;
 			p2.GetComponent<Animation>().Play("ScaleDown (2-1)");
+			audio.Play();
 
         }
         else if(rb2.mass == 1 && Input.GetKeyDown(KeyCode.DownArrow))
