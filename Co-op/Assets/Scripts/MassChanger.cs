@@ -8,6 +8,7 @@ public class MassChanger : MonoBehaviour
     public Rigidbody rb1;
     public Transform p1;
 
+
     public Rigidbody rb2;
     public Transform p2;
     
@@ -21,13 +22,17 @@ public class MassChanger : MonoBehaviour
         if (rb1.mass == 3 && Input.GetKeyDown("s"))
         {
             rb1.mass -= 1;
+			p1.GetComponent<Animation>().Play("ScaleDown (3-2)");
             rb2.mass += 1;
+			p2.GetComponent<Animation>().Play("ScaleUp (1-2)");
 
         }
         else if (rb1.mass == 2 && Input.GetKeyDown("s"))
         {
             rb1.mass -= 1;
+			p1.GetComponent<Animation>().Play("ScaleDown (2-1)");
             rb2.mass += 1;
+			p2.GetComponent<Animation>().Play("ScaleUp (2-3)");
         }
         else if (rb1.mass == 1 && Input.GetKeyDown("s"))
         {
@@ -37,12 +42,17 @@ public class MassChanger : MonoBehaviour
         if(rb2.mass == 3 && Input.GetKeyDown(KeyCode.DownArrow))
         {
             rb1.mass += 1;
+			p1.GetComponent<Animation>().Play("ScaleUp (1-2)");
             rb2.mass -= 1;
+			p2.GetComponent<Animation>().Play("ScaleDown (3-2)");
         }
         else if(rb2.mass == 2 && Input.GetKeyDown(KeyCode.DownArrow))
         {
             rb1.mass += 1;
+			p1.GetComponent<Animation>().Play("ScaleUp (2-3)");
             rb2.mass -= 1;
+			p2.GetComponent<Animation>().Play("ScaleDown (2-1)");
+
         }
         else if(rb2.mass == 1 && Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -51,29 +61,29 @@ public class MassChanger : MonoBehaviour
 
     }
 
-    public void scaleChanger()
-    {
-        if(rb1.mass == 1 && rb2.mass == 3)
-        {
-            p1.localScale = new Vector3(1, 1, 1);
-            p2.localScale = new Vector3(3, 3, 3);
-        }
-        else if(rb1.mass == 2 && rb2.mass == 2)
-        {
-            p1.localScale = new Vector3(2, 2, 2);
-            p2.localScale = new Vector3(2, 2, 2);
-        }
-        else if (rb1.mass == 3 && rb2.mass == 1)
-        {
-            p1.localScale = new Vector3(3, 3, 3);
-            p2.localScale = new Vector3(1, 1 ,1);
-        }
-    }
+//    public void scaleChanger()
+//    {
+//        if(rb1.mass == 1 && rb2.mass == 3)
+//        {
+//            p1.localScale = new Vector3(1, 1, 1);
+//            p2.localScale = new Vector3(3, 3, 3);
+//        }
+//        else if(rb1.mass == 2 && rb2.mass == 2)
+//        {
+//            p1.localScale = new Vector3(2, 2, 2);
+//            p2.localScale = new Vector3(2, 2, 2);
+//        }
+//        else if (rb1.mass == 3 && rb2.mass == 1)
+//        {
+//            p1.localScale = new Vector3(3, 3, 3);
+//            p2.localScale = new Vector3(1, 1 ,1);
+//        }
+//    }
 
     // Update is called once per frame
     void Update()
     {
         massChanger();
-        scaleChanger();
+       // scaleChanger();
     }
 }
