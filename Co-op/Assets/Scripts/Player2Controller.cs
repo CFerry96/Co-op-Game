@@ -12,11 +12,13 @@ public class Player2Controller : MonoBehaviour
     private float gravity = 14.0f;
     private float jumpForce = 30.0f;
 
+    public Animator anim;
+
 
 
     private void Start()
         {
-             controller = GetComponent<CharacterController>();
+                controller = GetComponent<CharacterController>();
         }
 
 
@@ -28,6 +30,7 @@ public class Player2Controller : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     verticalVelocity = jumpForce;
+                    anim.SetBool("jump", true);
                 }
             }
             else
@@ -39,6 +42,10 @@ public class Player2Controller : MonoBehaviour
             moveVector.z = Input.GetAxis("Arrows") * 20;
             controller.Move(moveVector * Time.deltaTime);
 
+            void OnCollisionEnter(Collision collision)
+            {
+                anim.SetBool("jump", false);
+            }
 
     }
 
@@ -47,7 +54,7 @@ public class Player2Controller : MonoBehaviour
 
 
 
-    #region basic
+#region basic
     /*public GameObject player1, player2;
     public Rigidbody rb1, rb2;
     private float speed;

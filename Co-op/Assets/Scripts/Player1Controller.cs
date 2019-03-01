@@ -11,6 +11,8 @@ public class Player1Controller : MonoBehaviour
     private float gravity = 14.0f;
     private float jumpForce = 30.0f;
 
+    public Animator anim;
+
     
 
     private void Start()
@@ -27,6 +29,7 @@ public class Player1Controller : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.W))
             {
                 verticalVelocity = jumpForce;
+                anim.SetBool("jump", true);
             }
         }
         else
@@ -39,6 +42,10 @@ public class Player1Controller : MonoBehaviour
         moveVector.y = verticalVelocity;
         moveVector.x = 0;
         controller.Move(moveVector * Time.deltaTime);
+    }
 
-    } 
+    void OnCollisionEnter(Collision collision)
+    {
+        anim.SetBool("jump", false);
+    }
 }

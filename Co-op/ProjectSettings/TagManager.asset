@@ -8,6 +8,7 @@ TagManager:
   - Blue
   - Ground
   - Baloon
+  - Floor
   layers:
   - Default
   - TransparentFX
