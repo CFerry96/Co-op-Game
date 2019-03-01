@@ -22,25 +22,26 @@ public class Player2Controller : MonoBehaviour
         }
 
 
-        private void Update()
+    private void Update()
+    {
+        if (controller.isGrounded)
         {
-            if (controller.isGrounded)
+            verticalVelocity = -gravity * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                verticalVelocity = -gravity * Time.deltaTime;
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    verticalVelocity = jumpForce;
-                    anim.SetBool("jump", true);
-                }
+                verticalVelocity = jumpForce;
+                anim.SetBool("jump", true);
             }
-            else
-            {
-                verticalVelocity -= gravity * 4 * Time.deltaTime;
-            }
+        }
+        else
+        {
+            verticalVelocity -= gravity * 4 * Time.deltaTime;
+        }
 
-            Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
-            moveVector.z = Input.GetAxis("Arrows") * 20;
-            controller.Move(moveVector * Time.deltaTime);
+        Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
+        moveVector.z = Input.GetAxis("Arrows") * 20;
+        controller.Move(moveVector * Time.deltaTime);
+    }
 
             void OnCollisionEnter(Collision collision)
             {
@@ -112,4 +113,3 @@ public class Player2Controller : MonoBehaviour
         p2Movement();
     }*/
     #endregion
-}
